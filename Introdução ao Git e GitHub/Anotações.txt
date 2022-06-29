@@ -1,0 +1,67 @@
+##COMANDOS BÁSICOS
+dir: lista de diretórios contidos na pasta que está situado.
+Chance Directory: cd (possibilita que navegue entre as pastas.) cd (caminho)/ ‘enter’.
+Retroceder um nível: cd..
+Limpar a tela: cls (clean scrum)
+TAB: função de auto completar.
+Criar uma pasta: mkdir (make directory), espaço nome da pasta ‘workspace’
+Criar um arquivo dentro da pasta: echo (ele “printa” de volta no terminal uma frase ou texto que você passa, exemplo:
+Echo hello ‘>’ hello.txt
+“>” : é um redirecionador de fluxo, ele vai pegar o output, a saída dessa função “echo” e vai jogar um arquivo. 
+O sistema operacional irá checar se nessa pasta já existe um arquivo chamado “hello.txt’, caso não tenha, ele vai criar.
+Deletar: del (deleta tudo que tem na pasta)
+(Seta para cima): para navegar entre o histórico de comandos que já foi executado no terminal.
+Deletar repositório: rmdir (remove directory), para facilitar pode usar flags, o /S e o /Q.
+
+##FUNCIONAMENTO
+A sigla SHA significa Secure Hash Algorithm (Algoritmo de Hash Seguro), é um conjunto de funções hash criptografadas projetadas pela NSA (Agência de Segurança Nacional dos EUA).
+SHA1 é um algoritmo de encriptação, resumindo é um algoritmo que vai pegar seu arquivo, seja ele uma foto, uma imagem, uma frase e vai embaralhar de uma forma muito específica.
+A encriptação gera um conjunto de caractere identificador de 40 dígitos, são únicos e servem como identificação.
+
+##OBJETOS INTERNOS DO GIT
+Blobs -> Guarda o SHA do arquivo
+Trees -> Armazena os Blobs, aponta para um Blob, também guarda o nome do arquivo. Podem apontar tanto para os Blobs, quanto para outras Trees.
+Commits -> É o objeto que junta tudo, é o que vai dar sentido para a intetração. Aponta para um Tree, aponta para um parente (um commit antes de dele), aponta para um autor, aponta para uma mensagem.
+Os commits também possui um SHA1 dos seus metadados, o que significa que se alterar um dado dentro de uma blod, ele vai gerar um SHA1 fdaquela blod, essa blob por sua vez, tem uma arvore apontando pra ela, logo o SHA da tree também será alterado, e isso irá refletir no commit.
+
+##INICIANDO O GIT E CRIANDO UM COMMIT
+Todo comando do Git leva o git na frente e o comando específico logo após
+Git init -> Para iniciar o repositório do Git 
+Git add -> Para mover arquivos, e começar a dar inicio
+Git commit
+
+##CICLO DE VIDA DOS ARQUIVOS
+Git init -> Além de criar a pasta .git, ela inicializa um conceito do git chamado repositório, ou seja, quando usamos o git init, estamos criando de fato um repositório no git, dentro daquela pasta.
+
+Dentro do “tracked”(arquivos que o git tem conhecimento deles), dentro dos arquivos que são rastreáveis de fato pelo git, ele pode se subdividir em três estágios diferentes:
+Unmodified -> arquivo que ainda não foi modificado.
+Modified -> é o arquivo unmodified que sofreu modificação.
+Staged -> é o conceito chave para entendermos, seguindo a analogia de: Imagina que tem um palco e nesse palco vai ocorrer uma peça, um show,a parte de trás do palco é backstage, onde temos pessoas trabalhando no figurino, maquiagem e etc, e também temos as pessoas que estão se preparando para entrar no palco, sejam para cantar ou atuar. Então o “Staged” é onde ficam os arquivos que estão se preparando para poder fazer parte de um outro tipo de agrupamento.
+E temos o outro agrupamento, que é o “Untracked” (arquivos que o git ainda não tem conhecimento deles).
+
+Quando usamos na aula passada o git add, fizemos o seguinte processo: a gente tinha um arquivo ‘untracked’, porque nós tínhamos acabado de criar ele, o git ainda não sabia da existência dele. Ao usar o comando ‘git add’, o git moveu o arquivo ‘untracked’ direto para o staged.
+
+Os arquivos “Unmodified”, é aquele arquivo que nunca foi modificado, quando você modificar esse arquivo, ele muda automaticamente para ‘modified’, como ele muda? Simples, o git vai comparar o ‘sha1’ dos arquivos, e ele vai descobrir que aquele arquivo tem modificação.
+Se rodarmos o ‘git add’ de novo nesse arquivo ‘modified’, ele irá para o ‘staged’, então ele também entra nessa área especial que está aguardando para entrar em ação.
+E se a gente tiver um arquivo ‘unmodified’ sem nenhuma alteração, e remover esse arquivo ele vai pra ‘untracked’ novamente.
+Unmodified e Modified, quando movemos esse arquivo para o ‘staged’ que é esse estado do arquivo que eu disse ser importante, ele está se preparando pra que? Para fazer parte de um ‘commit’. Então quando colocamos esses arquivos no backstage, colocamos eles atrás do palco, esperando para entrar em ação, a gente da um ‘commit’ neles, ou seja, a gente envelopa todas essas modificações com significância, a gente escreve uma mensagem para o nosso ‘commit’. E o commit retorna todos esses arquivos para ‘unmodified’, para começar o ciclo de novo, ele pega todos aqueles arquivos, e fala: “Acabei as alterações desses arquivos, e eu vou salvar ele e criar um ‘snap shot’, cou criar uma foto.” É como se eu tirasse uma foto do meu código naquele momento, então o ‘snap shot’ do meu código nesse momento está salvo dentro do commit.
+
+##COMO OS CONFLITOS ACONTECEM NO GITHUB E COMO RESOLVÊ-LOS
+Conflito de Merge – Quando o git tenta juntar o código das alterações e existem duas alterações na mesma linha.
+
+Quando isso acontecer o git te dá opção de puxar o código mais recente para depois o git tentar juntar as duas versões
+EX:
+Digitar: git pull origin master ‘enter’
+O Git acusa o conflito e te dá opção de arrumar você mesmo.
+Sendo assim, eu vou no meu arquivo readme e abrir no typer, vou copiar o conteúdo dele e cola num bloco de notas, ‘corrigi’, copia novamente e cola no typer.
+
+Após comita ele novamente
+E empurra ele para o GitHub.
+
+##COMO BAIXAR UM REPOSITÓRIO QUE ESTÁ NO GITHUB PARA O SEU REPOSITÓRIO LOCAL
+Botão CODE > clonar copiando URL
+Ir para o terminal
+Digitar: git clone (colar URL)
+
+
+
